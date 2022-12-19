@@ -6,8 +6,8 @@ import { faker } from '@faker-js/faker'
 describe('Form Interactions', function () {
   faker.locale = 'pl'
   const randomEmail = faker.internet.email()
-  const randomLogin = faker.name.lastName() + 'XX'
-  const randomPassword = faker.internet.password(18)
+  const randomLogin = faker.name.domainWord()
+  const randomPassword = faker.internet.password(18,false,/[a-zA-Z0-9]/)
   const randomPhone = faker.phone.number('+485########')
   const randomKRS = faker.finance.pin(10)
   const randomCompanyName = faker.company.name()
@@ -42,7 +42,7 @@ describe('Form Interactions', function () {
   it('Happy path test', function () {
 
     cy.get('#email').as('login').type(randomEmail)
-    cy.get("[data-testid='login-field']").type(randomLogin)
+    cy.get("[data-testid='login-field']").type(randomLogin.substring(0,15))
     cy.get("[data-testid='password-field']").type(randomPassword)
     cy.get("[data-testid='phone-field']").type(randomPhone)
     cy.get('.iohzf').click().type('Polska{ENTER}')
