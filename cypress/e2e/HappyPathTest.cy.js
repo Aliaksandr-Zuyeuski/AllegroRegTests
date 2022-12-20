@@ -41,7 +41,7 @@ describe('Form Interactions', function () {
 
   it('Happy path test', function () {
 
-    cy.get('#email').as('login').type(randomEmail)
+    cy.get('#email').type(randomEmail)
     cy.get("[data-testid='login-field']").type(randomLogin.substring(0,15))
     cy.get("[data-testid='password-field']").type(randomPassword)
     cy.get("[data-testid='phone-field']").type(randomPhone)
